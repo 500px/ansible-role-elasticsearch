@@ -25,7 +25,7 @@
 
 - name: Make sure Elasticsearch is running before proceeding.
   wait_for:
-    host: "{{ elasticsearch_network_host }}"
+    host: "{{ ansible_eth0.ipv4.address }}"
     port: "{{ elasticsearch_http_port }}"
     delay: 3
     timeout: 300
