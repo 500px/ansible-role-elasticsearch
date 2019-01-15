@@ -16,6 +16,13 @@
     update_cache: true
   when: elasticsearch_version >= "1.7"
 
+- name: Add older version Elasticsearch repository.
+  apt_repository:
+    repo: 'deb https://packages.elastic.co/elasticsearch/{{ elasticsearch_version[0:3] }}/debian stable main'
+    state: present
+    update_cache: true
+  when: elasticsearch_version < "1.7"
+
 - name: Install Elasticsearch.
   package:
     name: elasticsearch={{ elasticsearch_version }}
